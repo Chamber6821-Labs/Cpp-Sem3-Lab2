@@ -19,7 +19,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(doctest)
 FetchContent_GetProperties(doctest)
-add_executable(brainhack_test brainhack.text.cpp)
+add_executable(brainhack_test brainhack.test.cpp)
 target_link_libraries(brainhack_test PRIVATE doctest_with_main)
 
 
