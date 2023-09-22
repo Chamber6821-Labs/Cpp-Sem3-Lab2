@@ -50,6 +50,15 @@ int main() {
     make<RcNothrow>(make<RcFork>(
       make<FkWithName>("", make<RcNothing>()),
       make<FkWithName>("exit", make<RcExit>(flag)),
+      make<FkWithName>("preset", make<RcWithEffect>([&]() {
+                         for (auto text : {"task 1", "task 2", "task 3"})
+                           tasks.emplace_back(
+                             std::chrono::time_point_cast<std::chrono::seconds>(
+                               std::chrono::system_clock::now()
+                             ),
+                             text
+                           );
+                       })),
       make<FkWithName>("list", make<RcMapped>([&](auto) {
                          auto range =
                            std::views::iota(size_t(0), tasks.size()) |
