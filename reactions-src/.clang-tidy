@@ -1,0 +1,20 @@
+---
+Checks: >
+  *,
+  -altera-*,
+  -llvmlibc-*,
+  -*-braces-around-statements,
+  -llvm-header-guard,
+  -fuchsia-default-arguments-calls,
+  -fuchsia-trailing-return,
+  -readability-identifier-length,
+
+WarningsAsErrors: '*'
+HeaderFilterRegex: '(\\|/)(src)(\\|/)'
+FormatStyle: file
+
+CheckOptions:
+  # I think that Clang++ on Windows use a broken standard library
+  # and some iterators are so complex
+  # that require to use std::move instead of copy constructor
+  performance-unnecessary-value-param.AllowedTypes: .*iterator.*
